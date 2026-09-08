@@ -108,10 +108,11 @@ export default function ContactPage() {
                   <select 
                     id="type" 
                     required
+                    defaultValue=""
                     className="w-full bg-transparent outline-none transition-colors appearance-none"
                     style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
                   >
-                    <option value="" disabled selected>Select an industry...</option>
+                    <option value="" disabled>Select an industry...</option>
                     <option value="Retail">Retail & E-Commerce</option>
                     <option value="Logistics">Logistics & Supply Chain</option>
                     <option value="Manufacturing">Manufacturing</option>
