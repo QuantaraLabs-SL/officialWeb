@@ -114,7 +114,8 @@ export default function SocialPage() {
       >
         <div className="page-wrapper max-w-4xl mx-auto">
           <div
-            className="rounded-2xl border border-[var(--color-line)] bg-white p-8 md:p-12 relative overflow-hidden shadow-sm"
+            className="rounded-2xl border border-[var(--color-line)] bg-white relative overflow-hidden shadow-sm"
+            style={{ padding: "clamp(2rem, 5vw, 3rem)" }}
           >
             {/* Teal Accent Line */}
             <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: "var(--color-teal)" }} />
@@ -142,7 +143,7 @@ export default function SocialPage() {
         style={{ padding: "8rem 1.5rem", background: "var(--color-paper)" }}
       >
         <div className="page-wrapper max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center" style={{ marginBottom: "4rem" }}>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
               Our Growth Services
             </h2>
@@ -157,7 +158,8 @@ export default function SocialPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl border border-[var(--color-line)] p-8 transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group relative overflow-hidden"
+                  className="bg-white rounded-2xl border border-[var(--color-line)] transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group relative overflow-hidden"
+                  style={{ padding: "2rem" }}
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--color-teal)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
