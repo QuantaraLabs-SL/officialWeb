@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens (CSS Custom Properties) ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --color-ink:    #0E1A2B;
+  --color-blue:   #1B4B8F;
+  --color-blue-light: #E8F0FE;
+  --color-teal:   #12A783;
+  --color-mist:   #F5F7FA;
+  --color-paper:  #FFFFFF;
+  --color-slate:  #5B6B7F;
+  --color-line:   #DCE3EA;
+
+  /* Primary gradient */
+  --gradient-primary: linear-gradient(135deg, #1B4B8F, #12A783);
+
+  /* Fonts — CSS variables set by next/font in layout.tsx */
+  --font-sans:    var(--font-inter, 'Inter', sans-serif);
+  --font-display: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+
+  /* Type scale */
+  --text-h1: 3.5rem;   /* 56px */
+  --text-h2: 2.5rem;   /* 40px */
+  --text-h3: 1.75rem;  /* 28px */
+  --text-h4: 1.25rem;  /* 20px */
+  --text-h5: 1rem;     /* 16px */
+  --text-h6: 0.875rem; /* 14px */
+
+  /* Misc */
+  --radius: 0.75rem;
+  --shadow-sm: 0 1px 3px rgba(14, 26, 43, 0.08), 0 1px 2px rgba(14, 26, 43, 0.04);
+  --shadow-md: 0 4px 16px rgba(14, 26, 43, 0.10), 0 2px 6px rgba(14, 26, 43, 0.06);
+  --shadow-nav: 0 1px 0 0 var(--color-line), 0 4px 20px rgba(14, 26, 43, 0.06);
+
+  /* Layout */
+  --header-height: 4rem;         /* 64px */
+  --page-max-width: 75rem;       /* 1200px */
+  --page-padding-x: 1.5rem;      /* 24px */
 }
 
+
+/* ─── Tailwind v4 Theme Registration ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink:   var(--color-ink);
+  --color-blue:  var(--color-blue);
+  --color-blue-light: var(--color-blue-light);
+  --color-teal:  var(--color-teal);
+  --color-mist:  var(--color-mist);
+  --color-paper: var(--color-paper);
+  --color-slate: var(--color-slate);
+  --color-line:  var(--color-line);
+
+  --font-sans:    var(--font-sans);
+  --font-display: var(--font-display);
+
+  --radius-default: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Reset & Body ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-mist);
+  min-height: 100%;
+}
+
+/* ─── Heading Scale ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text-h1); } /* 56px */
+h2 { font-size: var(--text-h2); } /* 40px */
+h3 { font-size: var(--text-h3); } /* 28px */
+h4 { font-size: var(--text-h4); } /* 20px */
+h5 { font-size: var(--text-h5); font-weight: 600; } /* 16px */
+h6 { font-size: var(--text-h6); font-weight: 600; } /* 14px */
+
+/* ─── Links ─── */
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover { color: var(--color-teal); }
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--color-teal);
+  color: var(--color-paper);
+}
+
+/* ─── Focus Ring ─── */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-mist); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-slate); }
+
+/* ─── Utility: Gradient Text ─── */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Utility: Gradient BG ─── */
+.gradient-bg {
+  background: var(--gradient-primary);
+}
+
+/* ─── Accessibility: Skip Link ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-blue);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* ─── Nav Dropdown Animation ─── */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-panel {
+  animation: dropdown-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Mobile Menu Slide ─── */
+@keyframes mobile-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu {
+  animation: mobile-menu-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Page Wrapper ─── */
+.page-wrapper {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--page-padding-x);
+  padding-right: var(--page-padding-x);
+}
+
+/* ─── Accessibility: Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
