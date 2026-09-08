@@ -75,7 +75,7 @@ function Dropdown({
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} style={{ position: "relative" }}>
       <button
         id="nav-solutions-trigger"
         aria-haspopup="true"
@@ -133,23 +133,30 @@ function Dropdown({
         <div
           role="menu"
           aria-label="Solutions sub-menu"
-          className="dropdown-panel"
+          className="dropdown-panel-wrapper"
           onMouseEnter={onOpen}
           onMouseLeave={onClose}
           style={{
             position: "absolute",
-            top: "calc(100% + 0.75rem)",
+            top: "100%",
             left: "50%",
             transform: "translateX(-50%)",
-            minWidth: "16rem",
-            background: "var(--color-paper)",
-            border: "1px solid var(--color-line)",
-            borderRadius: "0.875rem",
-            boxShadow: "var(--shadow-md)",
-            padding: "0.5rem",
+            paddingTop: "0.75rem", // bridges the gap so the mouse doesn't leave the hover area
             zIndex: 100,
           }}
         >
+          <div
+            className="dropdown-panel"
+            style={{
+              minWidth: "16rem",
+              background: "var(--color-paper)",
+              border: "1px solid var(--color-line)",
+              borderRadius: "0.875rem",
+              boxShadow: "var(--shadow-md)",
+              padding: "0.5rem",
+              position: "relative",
+            }}
+          >
           {/* Arrow */}
           <div
             aria-hidden="true"
@@ -214,6 +221,7 @@ function Dropdown({
               </Link>
             );
           })}
+          </div>
         </div>
       )}
     </div>
