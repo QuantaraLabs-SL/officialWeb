@@ -244,6 +244,24 @@ export default function Home() {
               style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem" }}
             >
               {/* Primary CTA */}
+              <Link href="/social" id="hero-cta-social" aria-label="Explore Quantara Social">
+                <Button
+                  asChild={false}
+                  variant="primary"
+                  size="lg"
+                  style={{
+                    paddingLeft:  "1.5rem",
+                    paddingRight: "1.5rem",
+                    background: "var(--color-teal)",
+                    boxShadow:    "0 4px 24px rgba(18,167,131,0.4)",
+                  }}
+                >
+                  Explore Quantara Social
+                  <ArrowRight size={16} style={{ marginLeft: "0.375rem" }} aria-hidden="true" />
+                </Button>
+              </Link>
+
+              {/* Secondary CTA */}
               <Link href="/contact" id="hero-cta-primary" aria-label="Start with a Business Diagnostic">
                 <Button
                   asChild={false}
@@ -255,7 +273,7 @@ export default function Home() {
                     boxShadow:    "0 4px 24px rgba(27,75,143,0.4)",
                   }}
                 >
-                  Start with a Business Diagnostic
+                  Business Diagnostic
                   <ArrowRight size={16} style={{ marginLeft: "0.375rem" }} aria-hidden="true" />
                 </Button>
               </Link>
