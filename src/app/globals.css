@@ -11,6 +11,7 @@
   --color-paper:  #FFFFFF;
   --color-slate:  #5B6B7F;
   --color-line:   #DCE3EA;
+  --color-amber:  #F5A623;
 
   /* Primary gradient */
   --gradient-primary: linear-gradient(135deg, #1B4B8F, #12A783);
@@ -50,6 +51,7 @@
   --color-paper: var(--color-paper);
   --color-slate: var(--color-slate);
   --color-line:  var(--color-line);
+  --color-amber: var(--color-amber);
 
   --font-sans:    var(--font-sans);
   --font-display: var(--font-display);

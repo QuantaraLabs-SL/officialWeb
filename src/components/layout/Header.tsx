@@ -33,9 +33,13 @@ const NAV_ITEMS: NavItem[] = [
         href: "/solutions/ai-automation",
         description: "Intelligent systems that work for you.",
       },
+      {
+        label: "Quantara Social",
+        href: "/social",
+        description: "Grow what you've built with data-driven marketing.",
+      },
     ],
   },
-  { label: "Quantara Social", href: "https://social.quantara.com" },
   { label: "Work", href: "/work" },
   { label: "Contact", href: "/contact" },
 ];
