@@ -1,102 +1,223 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Code2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Software Development",
-  description: "Custom platforms, internal tools, and integrations engineered to your exact constraints.",
+  title: "Software Development | Quantara Labs",
+  description: "Custom software built for scale and speed.",
 };
 
 export default function SoftwareDevelopmentPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 px-6 bg-[var(--color-mist)]">
-        <div className="page-wrapper max-w-4xl mx-auto">
-          <Link href="/#solutions" className="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase mb-6 text-[var(--color-teal)] hover:opacity-80 transition-opacity">
-            <ArrowRight size={16} className="rotate-180" /> Back to Solutions
-          </Link>
-          <h1 className="font-display font-bold mb-6" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", color: "var(--color-ink)", lineHeight: 1.1 }}>
-            Software Development
-          </h1>
-          <p className="text-lg md:text-xl text-[var(--color-slate)] max-w-2xl leading-relaxed">
-            Off-the-shelf software never quite fits. We build systems, websites, and apps tailored to your actual business workflows.
+      {/* ══════════════════════════════════════
+          HERO SECTION
+      ══════════════════════════════════════ */}
+      <section
+        className="relative overflow-hidden border-b border-[var(--color-line)]"
+        style={{
+          padding: "8rem 1.5rem 6rem",
+          background: "linear-gradient(135deg, rgba(27, 75, 143, 0.05) 0%, rgba(100, 116, 139, 0.08) 100%)",
+        }}
+      >
+        <div className="page-wrapper max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+          
+          {/* Left Text */}
+          <div className="flex-1 z-10">
+            <span
+              className="uppercase"
+              style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 700, letterSpacing: "0.1em", color: "var(--color-blue)", display: "block", marginBottom: "1rem" }}
+            >
+              Solution
+            </span>
+            <h1
+              style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem, 5vw, 4rem)", color: "var(--color-ink)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}
+            >
+              Software Development
+            </h1>
+            <p
+              style={{ fontFamily: "var(--font-sans)", fontSize: "1.25rem", color: "var(--color-slate)", lineHeight: 1.6, maxWidth: "32rem" }}
+            >
+              We don&apos;t just write code; we build the engine your business needs to scale. From internal tools to customer-facing platforms, we deliver clean, performant software.
+            </p>
+          </div>
+
+          {/* Right Decoration (Watermark/Graphic) */}
+          <div className="hidden md:flex flex-1 justify-end items-center relative opacity-20 pointer-events-none select-none">
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "20rem", color: "var(--color-slate)", lineHeight: 1 }}>
+              02
+            </span>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          THE PROBLEM
+      ══════════════════════════════════════ */}
+      <section
+        className="border-b border-[var(--color-line)]"
+        style={{ padding: "6rem 1.5rem", background: "var(--color-mist)" }}
+      >
+        <div className="page-wrapper max-w-4xl mx-auto text-center">
+          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "2rem", color: "var(--color-ink)", marginBottom: "1.5rem", letterSpacing: "-0.02em" }}>
+            The Off-The-Shelf Limit
+          </h2>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.25rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+            Eventually, every ambitious company outgrows their generic software stack. You start compromising your process to fit the tool, rather than the tool fitting your process. That&apos;s when you need custom architecture.
           </p>
         </div>
       </section>
 
-      {/* Problem Statement & Approach */}
-      <section className="py-24 px-6 bg-[var(--color-paper)]">
-        <div className="page-wrapper max-w-4xl mx-auto grid md:grid-cols-2 gap-16">
-          <div>
-            <h2 className="font-display font-bold text-2xl mb-4 text-[var(--color-ink)]">The Problem</h2>
-            <p className="text-[var(--color-slate)] leading-relaxed">
-              You are paying monthly subscriptions for three different platforms that don&apos;t talk to each other. Your team spends hours manually copying data from your CRM to your ERP. Off-the-shelf software forces your business to change how it works, rather than working how your business needs it to.
+      {/* ══════════════════════════════════════
+          THE QUANTARA APPROACH
+      ══════════════════════════════════════ */}
+      <section
+        className="border-b border-[var(--color-line)]"
+        style={{ padding: "8rem 1.5rem", background: "var(--color-paper)" }}
+      >
+        <div className="page-wrapper max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
+              Our Engineering Approach
+            </h2>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", maxWidth: "40rem", margin: "0 auto", lineHeight: 1.6 }}>
+              We build systems that are easy to maintain, scalable, and directly tied to your business objectives.
             </p>
           </div>
-          <div>
-            <h2 className="font-display font-bold text-2xl mb-4 text-[var(--color-ink)]">Our Approach</h2>
-            <p className="text-[var(--color-slate)] leading-relaxed">
-              We don&apos;t write a single line of code until we understand the operational bottleneck we are trying to solve. When we do build, we create lightweight, highly specific internal tools and integrations that bridge the gaps in your operations, built on modern web technologies designed to scale.
-            </p>
+
+          <div className="flex flex-col gap-8">
+            {/* Step 1 */}
+            <div className="bg-white rounded-2xl border border-[var(--color-line)] shadow-sm flex flex-col md:flex-row items-center gap-6" style={{ padding: "2rem" }}>
+              <div className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-white text-xl" style={{ background: "var(--color-blue)", fontFamily: "var(--font-display)" }}>
+                1
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
+                  Scope & Architecture
+                </h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+                  We define the exact requirements and choose the right tech stack. No over-engineering, just pragmatic choices built for speed and longevity.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white rounded-2xl border border-[var(--color-line)] shadow-sm flex flex-col md:flex-row items-center gap-6" style={{ padding: "2rem" }}>
+              <div className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-white text-xl" style={{ background: "var(--color-blue)", fontFamily: "var(--font-display)" }}>
+                2
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
+                  Iterative Build
+                </h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+                  We develop in short sprints. You see working software early and often, ensuring the final product perfectly aligns with your expectations.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white rounded-2xl border border-[var(--color-line)] shadow-sm flex flex-col md:flex-row items-center gap-6" style={{ padding: "2rem" }}>
+              <div className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center font-bold text-white text-xl" style={{ background: "var(--color-blue)", fontFamily: "var(--font-display)" }}>
+                3
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
+                  Handoff & Maintenance
+                </h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+                  We don&apos;t hold your code hostage. We provide clean documentation, train your team, and offer ongoing support to keep your engine running.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* What's Included */}
-      <section className="py-24 px-6 bg-[var(--color-mist)]">
-        <div className="page-wrapper max-w-4xl mx-auto">
-          <h2 className="font-display font-bold mb-10 text-[var(--color-ink)] text-3xl">
-            What&apos;s Included
+      {/* ══════════════════════════════════════
+          WHAT'S INCLUDED
+      ══════════════════════════════════════ */}
+      <section
+        className="border-b border-[var(--color-line)]"
+        style={{ padding: "8rem 1.5rem", background: "var(--color-mist)" }}
+      >
+        <div className="page-wrapper max-w-5xl mx-auto">
+          <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "4rem", letterSpacing: "-0.02em" }}>
+            Capabilities & Deliverables
           </h2>
-          <div className="grid sm:grid-cols-2 gap-6">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              "Custom Web Applications",
-              "Internal Dashboard & Portals",
-              "API Integrations & Middleware",
-              "Legacy System Modernization",
-              "Corporate Websites & CMS",
-              "Technical Architecture Consulting"
+              { title: "Web Applications", desc: "Full-stack platforms built with modern frameworks like React and Node.js." },
+              { title: "Internal Tooling", desc: "Custom dashboards and admin panels that speed up your team's workflow." },
+              { title: "API Development", desc: "Robust, secure APIs to connect your disconnected systems." },
+              { title: "Legacy Modernization", desc: "Refactoring and migrating outdated systems to cloud-native architecture." },
+              { title: "Database Architecture", desc: "Designing scalable schemas for growing data needs." },
+              { title: "Cloud Deployment", desc: "Secure, highly-available hosting setups on AWS or Google Cloud." },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-lg bg-[var(--color-paper)] border border-[var(--color-line)]">
-                <Code2 className="text-[var(--color-teal)] shrink-0 mt-0.5" size={20} />
-                <span className="text-[var(--color-ink)] font-medium">{item}</span>
+              <div key={i} className="bg-white rounded-xl border border-[var(--color-line)]" style={{ padding: "1.5rem" }}>
+                <h4 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1.125rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
+                  {item.title}
+                </h4>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", color: "var(--color-slate)", lineHeight: 1.5 }}>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Example Use Case (Placeholder) */}
-      <section className="py-24 px-6 bg-[var(--color-paper)]">
-        <div className="page-wrapper max-w-4xl mx-auto">
-          <h2 className="font-display font-bold mb-6 text-[var(--color-ink)] text-3xl">
-            Example Use Case
-          </h2>
-          <div className="p-8 rounded-xl border border-[var(--color-line)] bg-[var(--color-mist)] opacity-80">
-            <h3 className="font-bold text-xl mb-3 text-[var(--color-ink)]">Custom Inventory Middleware</h3>
-            <p className="text-[var(--color-slate)] leading-relaxed mb-4">
-              <strong>Scenario:</strong> A regional retailer was using a legacy point-of-sale system in-store and Shopify online. Stock levels were updated manually at the end of each day, leading to overselling online and angry customers.
-            </p>
-            <p className="text-[var(--color-slate)] leading-relaxed">
-              <strong>Result:</strong> We built a custom middleware application that polled the legacy POS database every 5 minutes and synced the inventory directly to Shopify via their API, eliminating manual data entry and ending online stockouts completely.
-            </p>
-          </div>
+      {/* ══════════════════════════════════════
+          EXAMPLE USE CASE
+      ══════════════════════════════════════ */}
+      <section
+        className="border-b border-[var(--color-line)]"
+        style={{ padding: "6rem 1.5rem", background: "var(--color-paper)" }}
+      >
+        <div className="page-wrapper max-w-3xl mx-auto rounded-2xl border border-dashed border-[var(--color-slate)] opacity-80" style={{ padding: "3rem", background: "var(--color-mist)" }}>
+          <span style={{ display: "inline-block", background: "var(--color-ink)", color: "white", padding: "0.25rem 0.75rem", borderRadius: "999px", fontSize: "0.75rem", fontWeight: 600, marginBottom: "1rem", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            Placeholder - Case Study Coming Soon
+          </span>
+          <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "1rem" }}>
+            The Custom Client Portal
+          </h3>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+            For example, we worked with a financial services firm whose clients were frustrated by email-heavy onboarding. We built a secure, custom web portal where clients could securely upload documents, track their application status, and message their advisors—cutting onboarding time in half.
+          </p>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 px-6 text-center bg-[var(--color-ink)] text-[var(--color-paper)]">
-        <div className="page-wrapper max-w-4xl mx-auto">
-          <h2 className="font-display font-bold mb-8 text-3xl md:text-4xl">
-            Need software that actually fits?
+      {/* ══════════════════════════════════════
+          FINAL CTA
+      ══════════════════════════════════════ */}
+      <section
+        style={{ padding: "8rem 1.5rem", background: "var(--color-ink)", color: "white" }}
+      >
+        <div className="page-wrapper max-w-4xl mx-auto text-center">
+          <div className="w-16 h-1 mx-auto mb-8 rounded-full" style={{ background: "var(--color-blue)" }}></div>
+          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 5vw, 3.5rem)", marginBottom: "1.5rem", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+            Ready to build something that lasts?
           </h2>
-          <Button variant="primary" size="lg" asChild>
-            <Link href="/contact">
-              Start your Business Diagnostic
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.25rem", color: "rgba(255,255,255,0.7)", marginBottom: "3rem", maxWidth: "32rem", margin: "0 auto 3rem auto" }}>
+            Tell us about your project. We&apos;ll tell you if it needs custom code, or if there&apos;s a faster way to solve it.
+          </p>
+          <div className="flex justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all"
+              style={{
+                background: "var(--color-blue)",
+                color: "white",
+                padding: "0.875rem 2rem",
+                fontSize: "1.125rem",
+              }}
+            >
+              Discuss Your Project
+              <ArrowRight size={18} />
             </Link>
-          </Button>
+          </div>
         </div>
       </section>
     </>
