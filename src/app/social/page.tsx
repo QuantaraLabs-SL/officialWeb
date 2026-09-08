@@ -98,9 +98,9 @@ export default function SocialPage() {
             Quantara Social takes the operational efficiency we&apos;ve built together and turns it into market presence, customer growth, and brand authority.
           </p>
           <Button size="lg" asChild style={{ backgroundColor: "var(--color-teal)", color: "white" }}>
-            <Link href="/contact">
+            <a href="https://social.quantara.com" target="_blank" rel="noopener noreferrer">
               Start growing <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
+            </a>
           </Button>
         </div>
       </section>
@@ -262,9 +262,9 @@ export default function SocialPage() {
             Let&apos;s take your business to the next phase with data-driven marketing and relentless focus on ROI.
           </p>
           <Button size="lg" asChild style={{ backgroundColor: "var(--color-teal)", color: "white", border: "none" }}>
-            <Link href="/contact">
-              Get in touch
-            </Link>
+            <a href="https://social.quantara.com" target="_blank" rel="noopener noreferrer">
+              Go to Quantara Social
+            </a>
           </Button>
           
           <div className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]">
