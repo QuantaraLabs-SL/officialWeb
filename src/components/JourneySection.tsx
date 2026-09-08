@@ -144,13 +144,35 @@ export default function JourneySection() {
     <section
       id="journey"
       ref={sectionRef}
-      className="overflow-hidden border-t border-[var(--color-line)]"
+      className="relative overflow-hidden border-t border-[var(--color-line)]"
       style={{
         background: "var(--color-paper)",
         padding: "6rem 1.5rem",
       }}
     >
-      <div className="page-wrapper max-w-6xl mx-auto">
+      <style>{`
+        @keyframes panTechGrid {
+          0% { background-position: 0px 0px; }
+          100% { background-position: 48px 48px; }
+        }
+      `}</style>
+
+      {/* Animated Techy Grid Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(27,75,143,0.06) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(27,75,143,0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+          animation: "panTechGrid 20s linear infinite",
+          maskImage: "radial-gradient(circle at center, black, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(circle at center, black, transparent 80%)",
+        }}
+      />
+
+      <div className="page-wrapper max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-24" style={{ marginTop: "4rem", marginBottom: "8rem" }}>
           <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
             Our Journey
