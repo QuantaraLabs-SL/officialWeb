@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Share2, PenTool, TrendingUp, Search, Layers, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GrowthForm } from "./GrowthForm";
 
 export const metadata: Metadata = {
   title: "Quantara Social | Growth & Marketing",
@@ -98,9 +99,9 @@ export default function SocialPage() {
             Quantara Social takes the operational efficiency we&apos;ve built together and turns it into market presence, customer growth, and brand authority.
           </p>
           <Button size="lg" asChild style={{ backgroundColor: "var(--color-teal)", color: "white" }}>
-            <a href="https://social.quantara.com" target="_blank" rel="noopener noreferrer">
+            <Link href="/contact">
               Start growing <ArrowRight className="ml-2 w-4 h-4" />
-            </a>
+            </Link>
           </Button>
         </div>
       </section>
@@ -119,7 +120,7 @@ export default function SocialPage() {
           >
             {/* Teal Accent Line */}
             <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: "var(--color-teal)" }} />
-            
+
             <p
               style={{
                 fontFamily: "var(--font-sans)",
@@ -162,7 +163,7 @@ export default function SocialPage() {
                   style={{ padding: "2rem" }}
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--color-teal)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  
+
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors" style={{ backgroundColor: "rgba(18, 167, 131, 0.1)", color: "var(--color-teal)" }}>
                     <Icon className="w-6 h-6" />
                   </div>
@@ -187,15 +188,15 @@ export default function SocialPage() {
         style={{ padding: "8rem 1.5rem", background: "rgba(18, 167, 131, 0.05)" }}
       >
         {/* Watermark shape */}
-        <div 
+        <div
           className="absolute right-0 bottom-0 pointer-events-none opacity-[0.03]"
-          style={{ 
-            width: "50vw", 
-            height: "50vw", 
-            borderRadius: "100px", 
+          style={{
+            width: "50vw",
+            height: "50vw",
+            borderRadius: "100px",
             background: "var(--color-teal)",
             transform: "translate(30%, 30%) rotate(45deg)"
-          }} 
+          }}
         />
 
         <div className="page-wrapper max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
@@ -233,7 +234,7 @@ export default function SocialPage() {
           <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: "rgba(18, 167, 131, 0.1)", color: "var(--color-teal)", fontWeight: 600, fontSize: "0.875rem", fontFamily: "var(--font-sans)" }}>
             CASE STUDIES
           </div>
-          <div 
+          <div
             className="p-12 rounded-2xl border-2 border-dashed border-[var(--color-line)]"
             style={{ backgroundColor: "var(--color-mist)" }}
           >
@@ -245,33 +246,14 @@ export default function SocialPage() {
       </section>
 
       {/* ══════════════════════════════════════
-          FINAL CTA (Dark Teal)
+          GROWTH INQUIRY FORM
       ══════════════════════════════════════ */}
       <section
-        className="text-center"
-        style={{
-          padding: "8rem 1.5rem",
-          background: "linear-gradient(135deg, var(--color-ink) 0%, #082a22 100%)", // Very dark ink/teal
-        }}
+        className="border-b border-[var(--color-line)]"
+        style={{ padding: "clamp(4rem, 8vw, 8rem) 1.5rem", background: "var(--color-paper)" }}
       >
-        <div className="page-wrapper max-w-3xl mx-auto">
-          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "white", marginBottom: "1.5rem", letterSpacing: "-0.02em" }}>
-            Ready to grow what you&apos;ve built?
-          </h2>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "rgba(255,255,255,0.7)", marginBottom: "3rem", lineHeight: 1.6 }}>
-            Let&apos;s take your business to the next phase with data-driven marketing and relentless focus on ROI.
-          </p>
-          <Button size="lg" asChild style={{ backgroundColor: "var(--color-teal)", color: "white", border: "none" }}>
-            <a href="https://social.quantara.com" target="_blank" rel="noopener noreferrer">
-              Go to Quantara Social
-            </a>
-          </Button>
-          
-          <div className="mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)]">
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "rgba(255,255,255,0.5)" }}>
-              Built on the operational foundation of <Link href="/" className="hover:text-white transition-colors underline decoration-[rgba(255,255,255,0.3)] underline-offset-4">Quantara Labs</Link>.
-            </p>
-          </div>
+        <div className="page-wrapper max-w-5xl mx-auto">
+          <GrowthForm />
         </div>
       </section>
     </>
