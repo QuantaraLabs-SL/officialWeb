@@ -16,14 +16,40 @@ export function GrowthForm() {
     }, 1200);
   };
 
+  const inputStyles = {
+    fontFamily: "var(--font-sans)",
+    fontSize: "1rem",
+    backgroundColor: "var(--color-paper)",
+    color: "var(--color-ink)",
+    padding: "0.75rem 1rem",
+    borderRadius: "0",
+    border: "1px solid var(--color-line)",
+    width: "100%",
+    boxSizing: "border-box" as const,
+    outline: "none"
+  };
+
   if (status === "success") {
     return (
       <div 
-        className="rounded-2xl border border-[var(--color-line)] bg-white shadow-sm flex flex-col items-center justify-center text-center"
-        style={{ padding: "clamp(3rem, 5vw, 4rem)", minHeight: "400px", borderLeft: "4px solid var(--color-teal)" }}
+        style={{ 
+          padding: "clamp(3rem, 5vw, 4rem)", 
+          minHeight: "400px", 
+          borderLeft: "4px solid var(--color-teal)",
+          borderTop: "1px solid var(--color-line)",
+          borderRight: "1px solid var(--color-line)",
+          borderBottom: "1px solid var(--color-line)",
+          borderRadius: "1rem",
+          backgroundColor: "white",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center"
+        }}
       >
-        <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: "rgba(18, 167, 131, 0.1)", color: "var(--color-teal)" }}>
-          <CheckCircle2 className="w-8 h-8" />
+        <div style={{ width: "4rem", height: "4rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem", backgroundColor: "rgba(18, 167, 131, 0.1)", color: "var(--color-teal)" }}>
+          <CheckCircle2 style={{ width: "2rem", height: "2rem" }} />
         </div>
         <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", fontWeight: 700, color: "var(--color-ink)", marginBottom: "1rem" }}>
           Growth journey initiated.
@@ -37,12 +63,19 @@ export function GrowthForm() {
 
   return (
     <div 
-      className="rounded-2xl border border-[var(--color-line)] bg-white shadow-sm overflow-hidden"
-      style={{ borderTop: "4px solid var(--color-teal)" }}
+      style={{ 
+        borderTop: "4px solid var(--color-teal)",
+        borderLeft: "1px solid var(--color-line)",
+        borderRight: "1px solid var(--color-line)",
+        borderBottom: "1px solid var(--color-line)",
+        borderRadius: "1rem",
+        backgroundColor: "white",
+        overflow: "hidden"
+      }}
     >
-      <div className="grid lg:grid-cols-[1.5fr_1fr] h-full">
+      <div style={{ display: "flex", flexWrap: "wrap", minHeight: "100%" }}>
         {/* Form Side */}
-        <div style={{ padding: "clamp(2.5rem, 5vw, 4rem)" }}>
+        <div style={{ flex: "1 1 60%", minWidth: "300px", padding: "clamp(2.5rem, 5vw, 4rem)" }}>
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 700, color: "var(--color-ink)", marginBottom: "0.5rem", letterSpacing: "-0.02em" }}>
             Start your growth journey
           </h3>
@@ -50,40 +83,38 @@ export function GrowthForm() {
             Tell us where you are today, and we'll show you the path forward.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-12">
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
             
             {/* Section 1: Business Information */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 border-b border-[var(--color-line)] pb-3">
-                <Briefcase className="w-5 h-5" style={{ color: "var(--color-teal)" }} />
-                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderBottom: "1px solid var(--color-line)", paddingBottom: "0.75rem" }}>
+                <Briefcase style={{ width: "1.25rem", height: "1.25rem", color: "var(--color-teal)" }} />
+                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)", margin: 0 }}>
                   Business Information
                 </h4>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
-                    Business Name <span className="text-red-500">*</span>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+                    Business Name <span style={{ color: "red" }}>*</span>
                   </label>
                   <input 
                     required
                     type="text" 
-                    className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors"
                     placeholder="E.g., Nexus Retail Group"
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                    style={inputStyles}
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
-                    Industry <span className="text-red-500">*</span>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+                    Industry <span style={{ color: "red" }}>*</span>
                   </label>
                   <select 
                     required
                     defaultValue=""
-                    className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors"
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                    style={inputStyles}
                   >
                     <option value="" disabled>Select your industry</option>
                     <option value="Retail">Retail</option>
@@ -93,32 +124,30 @@ export function GrowthForm() {
                     <option value="E-commerce">E-commerce</option>
                     <option value="Other">Other</option>
                   </select>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", color: "var(--color-slate)", marginTop: "0.25rem" }}>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", color: "var(--color-slate)", margin: 0 }}>
                     Helps us understand your market context.
                   </p>
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
                     Website URL
                   </label>
                   <input 
                     type="url" 
-                    className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors"
                     placeholder="https://yourwebsite.com"
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                    style={inputStyles}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
                     Budget Range
                   </label>
                   <select 
                     defaultValue=""
-                    className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors"
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                    style={inputStyles}
                   >
                     <option value="" disabled>Estimated monthly budget</option>
                     <option value="Under $500">Under $500</option>
@@ -131,22 +160,22 @@ export function GrowthForm() {
             </div>
 
             {/* Section 2: Marketing & Goals */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 border-b border-[var(--color-line)] pb-3">
-                <BarChart className="w-5 h-5" style={{ color: "var(--color-teal)" }} />
-                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderBottom: "1px solid var(--color-line)", paddingBottom: "0.75rem" }}>
+                <BarChart style={{ width: "1.25rem", height: "1.25rem", color: "var(--color-teal)" }} />
+                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)", margin: 0 }}>
                   Marketing & Goals
                 </h4>
               </div>
 
-              <div className="space-y-3">
-                <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
                   Current marketing channels
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
                   {['Social Media', 'Search Engine Optimization (SEO)', 'Paid Advertising', 'Content Marketing', 'None yet'].map(channel => (
-                    <label key={channel} className="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-[var(--color-line)] hover:border-[var(--color-teal)] transition-colors bg-[var(--color-paper)]">
-                      <input type="checkbox" className="w-5 h-5 rounded-sm border border-[var(--color-line)] text-[var(--color-teal)] focus:ring-[var(--color-teal)] cursor-pointer" />
+                    <label key={channel} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid var(--color-line)", backgroundColor: "var(--color-paper)", cursor: "pointer" }}>
+                      <input type="checkbox" style={{ width: "1.25rem", height: "1.25rem", cursor: "pointer", accentColor: "var(--color-teal)" }} />
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", color: "var(--color-ink)" }}>
                         {channel}
                       </span>
@@ -155,15 +184,14 @@ export function GrowthForm() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
-                  Main growth goal <span className="text-red-500">*</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+                  Main growth goal <span style={{ color: "red" }}>*</span>
                 </label>
                 <select 
                   required
                   defaultValue=""
-                  className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors"
-                  style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                  style={inputStyles}
                 >
                   <option value="" disabled>What is the primary objective of this engagement?</option>
                   <option value="Brand Awareness">Increase Brand Awareness</option>
@@ -173,38 +201,37 @@ export function GrowthForm() {
                 </select>
               </div>
 
-              <div className="space-y-2">
-                <label className="block" style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
-                  Message or specific challenge <span className="text-red-500">*</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <label style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--color-ink)" }}>
+                  Message or specific challenge <span style={{ color: "red" }}>*</span>
                 </label>
                 <textarea 
                   required
                   rows={4}
-                  className="w-full px-4 py-3 rounded-none border border-[var(--color-line)] focus:outline-none focus:border-[var(--color-teal)] focus:ring-1 focus:ring-[var(--color-teal)] transition-colors resize-none"
                   placeholder="Where are you currently stuck? What does success look like for you?"
-                  style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", backgroundColor: "var(--color-paper)", color: "var(--color-ink)" }}
+                  style={{ ...inputStyles, resize: "none" }}
                 />
               </div>
             </div>
 
             {/* Section 3: Contact Details */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 border-b border-[var(--color-line)] pb-3">
-                <Phone className="w-5 h-5" style={{ color: "var(--color-teal)" }} />
-                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", borderBottom: "1px solid var(--color-line)", paddingBottom: "0.75rem" }}>
+                <Phone style={{ width: "1.25rem", height: "1.25rem", color: "var(--color-teal)" }} />
+                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 600, color: "var(--color-ink)", margin: 0 }}>
                   Contact Preference
                 </h4>
               </div>
 
-              <div className="flex gap-8">
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input required type="radio" name="contact" value="Email" className="w-5 h-5 border-[var(--color-line)] text-[var(--color-teal)] focus:ring-[var(--color-teal)] bg-[var(--color-paper)] cursor-pointer" />
+              <div style={{ display: "flex", gap: "2rem" }}>
+                <label style={{ display: "flex", alignItems: "center", gap: "0.75rem", cursor: "pointer" }}>
+                  <input required type="radio" name="contact" value="Email" style={{ width: "1.25rem", height: "1.25rem", cursor: "pointer", accentColor: "var(--color-teal)" }} />
                   <span style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}>
                     Email
                   </span>
                 </label>
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input required type="radio" name="contact" value="WhatsApp" className="w-5 h-5 border-[var(--color-line)] text-[var(--color-teal)] focus:ring-[var(--color-teal)] bg-[var(--color-paper)] cursor-pointer" />
+                <label style={{ display: "flex", alignItems: "center", gap: "0.75rem", cursor: "pointer" }}>
+                  <input required type="radio" name="contact" value="WhatsApp" style={{ width: "1.25rem", height: "1.25rem", cursor: "pointer", accentColor: "var(--color-teal)" }} />
                   <span style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}>
                     WhatsApp
                   </span>
@@ -212,12 +239,11 @@ export function GrowthForm() {
               </div>
             </div>
 
-            <div className="pt-8 border-t border-[var(--color-line)]">
+            <div style={{ paddingTop: "2rem", borderTop: "1px solid var(--color-line)" }}>
               <Button 
                 type="submit" 
                 size="lg" 
                 disabled={status === "submitting"}
-                className="group"
                 style={{ 
                   backgroundColor: "var(--color-teal)", 
                   color: "white",
@@ -226,17 +252,19 @@ export function GrowthForm() {
                   width: "100%",
                   maxWidth: "300px",
                   fontSize: "1.125rem",
-                  borderRadius: "0", // the prompt requested "rounded-none"
+                  borderRadius: "0",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  transition: "background-color 0.2s ease"
+                  transition: "background-color 0.2s ease",
+                  border: "none",
+                  cursor: "pointer"
                 }}
               >
                 {status === "submitting" ? "Submitting..." : "Start growing"}
-                {status !== "submitting" && <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />}
+                {status !== "submitting" && <ArrowRight style={{ marginLeft: "0.5rem", width: "1.25rem", height: "1.25rem" }} />}
               </Button>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-slate)", marginTop: "1rem" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-slate)", marginTop: "1rem", margin: 0, paddingTop: "1rem" }}>
                 We'll never share your data. Your growth starts here.
               </p>
             </div>
@@ -245,33 +273,36 @@ export function GrowthForm() {
 
         {/* Value Prop / Info Side */}
         <div 
-          className="hidden lg:flex flex-col"
           style={{ 
+            flex: "1 1 35%",
+            minWidth: "300px",
             padding: "clamp(2.5rem, 5vw, 4rem)", 
             backgroundColor: "rgba(18, 167, 131, 0.05)",
-            borderLeft: "1px solid var(--color-line)"
+            borderLeft: "1px solid var(--color-line)",
+            display: "flex",
+            flexDirection: "column"
           }}
         >
-          <div className="sticky top-32">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: "var(--color-paper)", border: "1px solid var(--color-line)", color: "var(--color-teal)" }}>
-              <TrendingUp className="w-6 h-6" />
+          <div style={{ position: "sticky", top: "8rem" }}>
+            <div style={{ width: "3rem", height: "3rem", borderRadius: "0.75rem", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem", backgroundColor: "var(--color-paper)", border: "1px solid var(--color-line)", color: "var(--color-teal)" }}>
+              <TrendingUp style={{ width: "1.5rem", height: "1.5rem" }} />
             </div>
-            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 700, color: "var(--color-ink)", marginBottom: "1rem", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 700, color: "var(--color-ink)", marginBottom: "1rem", lineHeight: 1.3, letterSpacing: "-0.01em", margin: 0, paddingBottom: "1rem" }}>
               Why start with a growth inquiry?
             </h4>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", lineHeight: 1.6, marginBottom: "2.5rem" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", lineHeight: 1.6, marginBottom: "2.5rem", margin: 0, paddingBottom: "2.5rem" }}>
               Every business is unique. By understanding your current channels, goals, and operational foundation, we can build a highly targeted growth strategy rather than a one-size-fits-all package.
             </p>
             
-            <ul className="space-y-6">
+            <ul style={{ display: "flex", flexDirection: "column", gap: "1.5rem", padding: 0, margin: 0, listStyle: "none" }}>
               {[
                 "Custom strategy outline within 48 hours",
                 "Deep-dive into your analytics & existing channels",
                 "No pressure, no aggressive sales tactics",
               ].map((item, i) => (
-                <li key={i} className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: "var(--color-teal)" }}>
-                    <CheckCircle2 className="w-4 h-4 text-white" />
+                <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <div style={{ width: "1.5rem", height: "1.5rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "0.125rem", backgroundColor: "var(--color-teal)" }}>
+                    <CheckCircle2 style={{ width: "1rem", height: "1rem", color: "white" }} />
                   </div>
                   <span style={{ fontFamily: "var(--font-sans)", fontSize: "1.0625rem", color: "var(--color-ink)", lineHeight: 1.5, fontWeight: 500 }}>
                     {item}
@@ -280,8 +311,8 @@ export function GrowthForm() {
               ))}
             </ul>
 
-            <div className="mt-12 pt-8 border-t border-[var(--color-line)]">
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-slate)", lineHeight: 1.6 }}>
+            <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--color-line)" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-slate)", lineHeight: 1.6, margin: 0 }}>
                 Already a <span style={{ color: "var(--color-ink)", fontWeight: 600 }}>Quantara Labs</span> client? Mention it in your message to fast-track your growth integration.
               </p>
             </div>
