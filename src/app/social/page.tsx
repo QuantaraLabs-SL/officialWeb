@@ -99,9 +99,9 @@ export default function SocialPage() {
             Quantara Social takes the operational efficiency we&apos;ve built together and turns it into market presence, customer growth, and brand authority.
           </p>
           <Button size="lg" asChild style={{ backgroundColor: "var(--color-teal)", color: "white" }}>
-            <Link href="/contact">
+            <a href="#growth-form" style={{ scrollBehavior: "smooth" }}>
               Start growing <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
+            </a>
           </Button>
         </div>
       </section>
@@ -249,7 +249,8 @@ export default function SocialPage() {
           GROWTH INQUIRY FORM
       ══════════════════════════════════════ */}
       <section
-        className="border-b border-[var(--color-line)]"
+        id="growth-form"
+        className="border-b border-[var(--color-line)] scroll-mt-[var(--header-height)]"
         style={{ padding: "clamp(4rem, 8vw, 8rem) 1.5rem", background: "var(--color-paper)" }}
       >
         <div className="page-wrapper max-w-5xl mx-auto">
