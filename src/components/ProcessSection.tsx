@@ -126,7 +126,10 @@ export default function ProcessSection() {
       id="process"
       ref={sectionRef}
       className="overflow-hidden border-t border-[var(--color-line)]"
-      style={{ background: "var(--color-mist)", padding: "6rem 1.5rem" }}
+      style={{ 
+        background: "linear-gradient(135deg, rgba(27,75,143,0.04) 0%, rgba(18,167,131,0.04) 100%), var(--color-mist)", 
+        padding: "6rem 1.5rem" 
+      }}
     >
       <div className="page-wrapper max-w-6xl mx-auto">
         <div className="text-center mb-20" style={{ marginTop: "4rem", marginBottom: "8rem" }}>
