@@ -150,25 +150,18 @@ export default function JourneySection() {
         padding: "6rem 1.5rem",
       }}
     >
-      <style>{`
-        @keyframes panTechGrid {
-          0% { background-position: 0px 0px; }
-          100% { background-position: 48px 48px; }
-        }
-      `}</style>
-
       {/* Animated Techy Grid Background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(27,75,143,0.06) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(27,75,143,0.06) 1px, transparent 1px)
+            linear-gradient(to right, rgba(27,75,143,0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(27,75,143,0.15) 1px, transparent 1px)
           `,
           backgroundSize: "48px 48px",
           animation: "panTechGrid 20s linear infinite",
-          maskImage: "radial-gradient(circle at center, black, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(circle at center, black, transparent 80%)",
+          maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%)",
+          WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%)",
         }}
       />
 
