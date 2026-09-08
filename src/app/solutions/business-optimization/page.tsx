@@ -17,7 +17,7 @@ export default function BusinessOptimizationPage() {
         className="relative overflow-hidden border-b border-[var(--color-line)]"
         style={{
           padding: "8rem 1.5rem 6rem",
-          background: "linear-gradient(135deg, rgba(27, 75, 143, 0.08) 0%, var(--color-paper) 100%)",
+          background: "linear-gradient(135deg, rgba(27, 75, 143, 0.15) 0%, rgba(27, 75, 143, 0.02) 100%)",
         }}
       >
         <div className="page-wrapper max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
@@ -134,7 +134,7 @@ export default function BusinessOptimizationPage() {
       ══════════════════════════════════════ */}
       <section
         className="border-b border-[var(--color-line)]"
-        style={{ padding: "8rem 1.5rem", background: "rgba(27, 75, 143, 0.03)" }}
+        style={{ padding: "8rem 1.5rem", background: "rgba(27, 75, 143, 0.06)" }}
       >
         <div className="page-wrapper max-w-5xl mx-auto">
           <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "4rem", letterSpacing: "-0.02em" }}>
