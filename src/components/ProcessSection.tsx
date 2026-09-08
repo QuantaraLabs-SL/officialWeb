@@ -127,7 +127,7 @@ export default function ProcessSection() {
       ref={sectionRef}
       className="overflow-hidden border-t border-[var(--color-line)]"
       style={{ 
-        background: "linear-gradient(135deg, rgba(27,75,143,0.04) 0%, rgba(18,167,131,0.04) 100%), var(--color-mist)", 
+        background: "var(--color-blue-light)", 
         padding: "6rem 1.5rem" 
       }}
     >
