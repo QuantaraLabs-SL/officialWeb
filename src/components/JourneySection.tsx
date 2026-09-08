@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import AbstractNetworkCanvas from "@/components/AbstractNetworkCanvas";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -150,20 +151,16 @@ export default function JourneySection() {
         padding: "6rem 1.5rem",
       }}
     >
-      {/* Animated Techy Grid Background */}
+      {/* Network Particles Background */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-50"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(27,75,143,0.15) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(27,75,143,0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: "48px 48px",
-          animation: "panTechGrid 20s linear infinite",
-          maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%)",
-          WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%)",
+          maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
         }}
-      />
+      >
+        <AbstractNetworkCanvas />
+      </div>
 
       <div className="page-wrapper max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-24" style={{ marginTop: "4rem", marginBottom: "8rem" }}>
