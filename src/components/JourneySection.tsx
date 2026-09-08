@@ -147,13 +147,13 @@ export default function JourneySection() {
       ref={sectionRef}
       className="relative overflow-hidden border-t border-[var(--color-line)]"
       style={{
-        background: "var(--color-paper)",
+        background: "linear-gradient(135deg, rgba(27,75,143,0.04) 0%, rgba(18,167,131,0.04) 100%), var(--color-paper)",
         padding: "6rem 1.5rem",
       }}
     >
       {/* Network Particles Background */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-50"
+        className="absolute inset-0 pointer-events-none opacity-90"
         style={{
           maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
