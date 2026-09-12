@@ -1,18 +1,86 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { Mail, MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Mail, MessageCircle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { validateContactForm, type ContactFormData, type ContactFormErrors } from "./validation";
+import { emailjsConfig } from "./config";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    business: "",
+    type: "",
+    otherDetails: "",
+    challenge: "",
+    method: "",
+  });
+  const [errors, setErrors] = useState<ContactFormErrors>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (field: keyof ContactFormData, value: string) => {
+    const nextData = { ...formData, [field]: value };
+    setFormData(nextData);
+
+    if (errors[field]) {
+      const validationResult = validateContactForm(nextData);
+      setErrors((prev) => ({
+        ...prev,
+        [field]: validationResult.errors[field],
+      }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder submission logic
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    const validationResult = validateContactForm(formData);
+
+    if (!validationResult.isValid) {
+      setErrors(validationResult.errors);
+      return;
+    }
+
+    setErrors({});
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          business: formData.business,
+          type: formData.type,
+          otherDetails: formData.otherDetails?.trim() || "N/A",
+          challenge: formData.challenge,
+          method: formData.method,
+        },
+        emailjsConfig.publicKey
+      );
+
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        business: "",
+        type: "",
+        otherDetails: "",
+        challenge: "",
+        method: "",
+      });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      setSubmitError("Failed to send your inquiry. Please try again or reach out directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -60,112 +128,280 @@ export default function ContactPage() {
           <div className="md:col-span-3">
             <div style={{ height: "4px", width: "48px", background: "linear-gradient(90deg, var(--color-blue), var(--color-teal))", borderRadius: "2px", marginBottom: "2rem" }}></div>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "2rem", color: "var(--color-ink)", marginBottom: "2rem" }}>
-              Request a Diagnostic
+              Send an Inquiry
             </h2>
 
             {submitted ? (
               <div className="rounded-xl border border-[var(--color-line)] flex flex-col items-center justify-center text-center" style={{ padding: "4rem 2rem", background: "var(--color-mist)" }}>
                 <CheckCircle2 size={48} style={{ color: "var(--color-teal)", marginBottom: "1rem" }} />
                 <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.5rem" }}>
-                  Request Sent Successfully!
+                  Inquiry Sent Successfully!
                 </h3>
                 <p style={{ fontFamily: "var(--font-sans)", color: "var(--color-slate)", fontSize: "1.125rem" }}>
                   Thank you for reaching out. A member of our team will review your details and contact you within 24 hours.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   {/* Full Name */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="name" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>Full Name</label>
+                    <label htmlFor="name" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      Full Name <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
                     <input 
                       type="text" 
                       id="name" 
-                      required
+                      value={formData.name}
+                      onChange={(e) => handleChange("name", e.target.value)}
                       placeholder="Jane Doe"
                       className="w-full bg-transparent outline-none transition-colors"
-                      style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
+                      style={{ 
+                        border: errors.name ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
                     />
+                    {errors.name && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.name}
+                      </span>
+                    )}
                   </div>
+
+                  {/* Email Address */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="email" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      Email Address <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      value={formData.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                      placeholder="jane@company.com"
+                      className="w-full bg-transparent outline-none transition-colors"
+                      style={{ 
+                        border: errors.email ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
+                    />
+                    {errors.email && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
                   {/* Business Name */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="business" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>Business Name</label>
+                    <label htmlFor="business" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      Business Name <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
                     <input 
                       type="text" 
                       id="business" 
-                      required
+                      value={formData.business}
+                      onChange={(e) => handleChange("business", e.target.value)}
                       placeholder="Acme Corp"
                       className="w-full bg-transparent outline-none transition-colors"
-                      style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
+                      style={{ 
+                        border: errors.business ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
                     />
+                    {errors.business && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.business}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Business Type */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="type" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      Business Type <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <select 
+                      id="type" 
+                      value={formData.type}
+                      onChange={(e) => handleChange("type", e.target.value)}
+                      className="w-full bg-transparent outline-none transition-colors appearance-none"
+                      style={{ 
+                        border: errors.type ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
+                    >
+                      <option value="" disabled>Select an industry...</option>
+                      <option value="Retail">Retail & E-Commerce</option>
+                      <option value="Logistics">Logistics & Supply Chain</option>
+                      <option value="Manufacturing">Manufacturing</option>
+                      <option value="Services">Professional Services</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    {errors.type && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.type}
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                {/* Business Type */}
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="type" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>Business Type</label>
-                  <select 
-                    id="type" 
-                    required
-                    defaultValue=""
-                    className="w-full bg-transparent outline-none transition-colors appearance-none"
-                    style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
-                  >
-                    <option value="" disabled>Select an industry...</option>
-                    <option value="Retail">Retail & E-Commerce</option>
-                    <option value="Logistics">Logistics & Supply Chain</option>
-                    <option value="Manufacturing">Manufacturing</option>
-                    <option value="Services">Professional Services</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                {/* Conditional Textarea for 'Other' */}
+                {formData.type === "Other" && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="otherDetails" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      Please specify your business or industry <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <textarea 
+                      id="otherDetails" 
+                      rows={3}
+                      value={formData.otherDetails || ""}
+                      onChange={(e) => handleChange("otherDetails", e.target.value)}
+                      placeholder="Tell us more about your industry or business model..."
+                      className="w-full bg-transparent outline-none transition-colors resize-none"
+                      style={{ 
+                        border: errors.otherDetails ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
+                    />
+                    {errors.otherDetails && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.otherDetails}
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 {/* Main Challenge */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="challenge" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>Main Challenge</label>
+                  <label htmlFor="challenge" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                    Main Challenge <span style={{ color: "#ef4444" }}>*</span>
+                  </label>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", color: "var(--color-slate)", margin: "-0.25rem 0 0.25rem 0" }}>What&apos;s the biggest operational inefficiency you&apos;re facing?</p>
                   <textarea 
                     id="challenge" 
                     rows={4}
-                    required
+                    value={formData.challenge}
+                    onChange={(e) => handleChange("challenge", e.target.value)}
                     placeholder="We spend too much time manually entering data..."
                     className="w-full bg-transparent outline-none transition-colors resize-none"
-                    style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
+                    style={{ 
+                      border: errors.challenge ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                      borderRadius: "0.5rem", 
+                      padding: "0.875rem 1rem", 
+                      fontFamily: "var(--font-sans)", 
+                      fontSize: "1rem", 
+                      color: "var(--color-ink)" 
+                    }}
                   />
+                  {errors.challenge && (
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                      {errors.challenge}
+                    </span>
+                  )}
                 </div>
 
                 {/* Contact Method */}
                 <div className="flex flex-col gap-2 mb-2">
-                  <label htmlFor="method" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>Preferred Contact Method</label>
+                  <label htmlFor="method" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                    Preferred Contact Method <span style={{ color: "#ef4444" }}>*</span>
+                  </label>
                   <select 
                     id="method" 
-                    required
+                    value={formData.method}
+                    onChange={(e) => handleChange("method", e.target.value)}
                     className="w-full bg-transparent outline-none transition-colors appearance-none"
-                    style={{ border: "1px solid var(--color-line)", borderRadius: "0.5rem", padding: "0.875rem 1rem", fontFamily: "var(--font-sans)", fontSize: "1rem", color: "var(--color-ink)" }}
+                    style={{ 
+                      border: errors.method ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                      borderRadius: "0.5rem", 
+                      padding: "0.875rem 1rem", 
+                      fontFamily: "var(--font-sans)", 
+                      fontSize: "1rem", 
+                      color: "var(--color-ink)" 
+                    }}
                   >
+                    <option value="" disabled>Select preferred method...</option>
                     <option value="Email">Email</option>
                     <option value="WhatsApp">WhatsApp</option>
                   </select>
+                  {errors.method && (
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                      {errors.method}
+                    </span>
+                  )}
                 </div>
+
+                {/* Submit Error */}
+                {submitError && (
+                  <div
+                    style={{
+                      padding: "0.75rem 1rem",
+                      borderRadius: "0.5rem",
+                      backgroundColor: "rgba(239, 68, 68, 0.08)",
+                      border: "1px solid rgba(239, 68, 68, 0.3)",
+                      color: "#ef4444",
+                      fontSize: "0.875rem",
+                      fontFamily: "var(--font-sans)",
+                    }}
+                  >
+                    {submitError}
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all"
                   style={{
-                    background: isHovered ? "var(--color-teal)" : "var(--color-blue)",
+                    background: isSubmitting 
+                      ? "var(--color-slate)" 
+                      : isHovered 
+                        ? "var(--color-teal)" 
+                        : "var(--color-blue)",
                     color: "white",
                     padding: "1rem 2rem",
                     fontSize: "1.125rem",
                     border: "none",
-                    cursor: "pointer",
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
+                    opacity: isSubmitting ? 0.8 : 1,
                   }}
                 >
-                  Send diagnostic request
-                  <ArrowRight size={18} />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending Inquiry...
+                    </>
+                  ) : (
+                    <>
+                      Send an Inquiry
+                      <ArrowRight size={18} />
+                    </>
+                  )}
                 </button>
                 
                 {/* Trust Signal */}
