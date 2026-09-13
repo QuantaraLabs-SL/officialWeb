@@ -6,6 +6,7 @@ export interface ContactFormData {
   otherDetails?: string;
   challenge: string;
   method: string;
+  whatsappNumber?: string;
 }
 
 export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
@@ -81,6 +82,16 @@ export function validateContactForm(data: ContactFormData): {
     errors.method = "Please select a preferred contact method.";
   } else if (!VALID_CONTACT_METHODS.includes(data.method as typeof VALID_CONTACT_METHODS[number])) {
     errors.method = "Please select a valid contact method.";
+  }
+
+  // Validate WhatsApp Number (required if method === 'WhatsApp')
+  if (data.method === "WhatsApp") {
+    const trimmedWhatsApp = data.whatsappNumber?.trim() || "";
+    if (!trimmedWhatsApp) {
+      errors.whatsappNumber = "WhatsApp number is required.";
+    } else if (trimmedWhatsApp.length < 7) {
+      errors.whatsappNumber = "Please enter a valid WhatsApp number.";
+    }
   }
 
   return {

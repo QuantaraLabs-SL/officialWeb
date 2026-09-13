@@ -16,9 +16,9 @@ export default function ContactPage() {
     email: "",
     business: "",
     type: "",
-    otherDetails: "",
     challenge: "",
     method: "",
+    whatsappNumber: "",
   });
   const [errors, setErrors] = useState<ContactFormErrors>({});
 
@@ -56,10 +56,10 @@ export default function ContactPage() {
           name: formData.name,
           email: formData.email,
           business: formData.business,
-          type: formData.type,
           otherDetails: formData.otherDetails?.trim() || "N/A",
           challenge: formData.challenge,
           method: formData.method,
+          whatsappNumber: formData.whatsappNumber || "N/A",
         },
         emailjsConfig.publicKey
       );
@@ -73,6 +73,7 @@ export default function ContactPage() {
         otherDetails: "",
         challenge: "",
         method: "",
+        whatsappNumber: "",
       });
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
@@ -353,6 +354,36 @@ export default function ContactPage() {
                   )}
                 </div>
 
+                {/* Conditional Input for WhatsApp Number */}
+                {formData.method === "WhatsApp" && (
+                  <div className="flex flex-col gap-2 mb-2">
+                    <label htmlFor="whatsappNumber" style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "var(--color-ink)" }}>
+                      WhatsApp Number <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <input 
+                      type="tel" 
+                      id="whatsappNumber" 
+                      value={formData.whatsappNumber || ""}
+                      onChange={(e) => handleChange("whatsappNumber", e.target.value)}
+                      placeholder="+94 7X XXX XXXX"
+                      className="w-full bg-transparent outline-none transition-colors"
+                      style={{ 
+                        border: errors.whatsappNumber ? "1px solid #ef4444" : "1px solid var(--color-line)", 
+                        borderRadius: "0.5rem", 
+                        padding: "0.875rem 1rem", 
+                        fontFamily: "var(--font-sans)", 
+                        fontSize: "1rem", 
+                        color: "var(--color-ink)" 
+                      }}
+                    />
+                    {errors.whatsappNumber && (
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#ef4444" }}>
+                        {errors.whatsappNumber}
+                      </span>
+                    )}
+                  </div>
+                )}
+
                 {/* Submit Error */}
                 {submitError && (
                   <div
@@ -437,8 +468,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>Email Us</h4>
-                    <a href="mailto:hello@quantara.com" style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", textDecoration: "none" }} className="hover:text-[var(--color-blue)] transition-colors">
-                      hello@quantara.com
+                    <a href="mailto:quantaralabssl@gmail.com" style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", textDecoration: "none" }} className="hover:text-[var(--color-blue)] transition-colors">
+                      quantaralabssl@gmail.com
                     </a>
                   </div>
                 </div>
@@ -450,10 +481,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>WhatsApp</h4>
-                    <a href="https://wa.me/94770000000" target="_blank" rel="noreferrer" style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", textDecoration: "none" }} className="hover:text-[var(--color-blue)] transition-colors">
-                      +94 XX XXX XXXX
+                    <a href="https://wa.me/94742198574" target="_blank" rel="noreferrer" style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", textDecoration: "none" }} className="hover:text-[var(--color-blue)] transition-colors">
+                      +94 74 219 8574
                     </a>
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-slate)", marginTop: "0.5rem", padding: "0.25rem 0.5rem", background: "rgba(18, 167, 131, 0.1)", display: "inline-block", borderRadius: "4px" }}>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-slate)", margin: "0.5rem 0 0 0", padding: "0.25rem 0.5rem", background: "rgba(18, 167, 131, 0.1)", display: "inline-block", borderRadius: "4px" }}>
                       Prefer WhatsApp? We respond faster there.
                     </p>
                   </div>
@@ -464,7 +495,7 @@ export default function ContactPage() {
                   <div>
                     <h4 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>Headquarters</h4>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", color: "var(--color-slate)", lineHeight: 1.5 }}>
-                      Colombo,<br />
+                      Malabe,<br />
                       Sri Lanka
                     </p>
                   </div>
