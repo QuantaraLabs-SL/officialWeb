@@ -125,7 +125,7 @@ export default function AboutPage() {
             {/* Founder 2 */}
             <div className="bg-white rounded-2xl border-l-4 border-t border-r border-b border-[var(--color-line)] shadow-sm" style={{ borderLeftColor: "var(--color-blue)", padding: "2rem" }}>
               <div className="w-20 h-20 rounded-full mb-6 overflow-hidden relative" style={{ background: "var(--color-mist)" }}>
-                <Image src="/images/pasindu.jpg" alt="Pasindu Boyagoda" fill className="object-cover" />
+                <Image src="/images/Pasindu.jpeg" alt="Pasindu Boyagoda" fill className="object-cover" />
               </div>
               <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
                 Pasindu Boyagoda
@@ -141,7 +141,7 @@ export default function AboutPage() {
             {/* Founder 3 */}
             <div className="bg-white rounded-2xl border-l-4 border-t border-r border-b border-[var(--color-line)] shadow-sm" style={{ borderLeftColor: "var(--color-teal)", padding: "2rem" }}>
               <div className="w-20 h-20 rounded-full mb-6 overflow-hidden relative" style={{ background: "var(--color-mist)" }}>
-                <Image src="/images/janith.jpg" alt="Janith Wijesekara" fill className="object-cover" />
+                <Image src="/images/Janith.png" alt="Janith Wijesekara" fill className="object-cover" />
               </div>
               <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
                 Janith Wijesekara
@@ -157,7 +157,7 @@ export default function AboutPage() {
             {/* Founder 4 */}
             <div className="bg-white rounded-2xl border-l-4 border-t border-r border-b border-[var(--color-line)] shadow-sm" style={{ borderLeftColor: "var(--color-blue)", padding: "2rem" }}>
               <div className="w-20 h-20 rounded-full mb-6 overflow-hidden relative" style={{ background: "var(--color-mist)" }}>
-                <Image src="/images/dinuka.jpg" alt="Dinuka Prathiraja" fill className="object-cover" />
+                <Image src="/images/Dinuka.jpeg" alt="Dinuka Prathiraja" fill className="object-cover" />
               </div>
               <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
                 Dinuka Prathiraja
