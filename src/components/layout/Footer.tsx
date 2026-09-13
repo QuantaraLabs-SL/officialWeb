@@ -73,25 +73,11 @@ export default function Footer() {
               aria-label="Quantara — home"
               style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", textDecoration: "none", marginBottom: "1rem" }}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  display: "inline-flex",
-                  width: "2rem",
-                  height: "2rem",
-                  borderRadius: "0.5rem",
-                  background: "var(--gradient-primary)",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#fff",
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  flexShrink: 0,
-                }}
-              >
-                Q
-              </span>
+              <img
+                src="/android-chrome-192x192.png"
+                alt="Quantara Logo"
+                style={{ width: "2rem", height: "2rem", borderRadius: "0.5rem", flexShrink: 0 }}
+              />
               <span
                 style={{
                   fontFamily: "var(--font-display)",
@@ -248,7 +234,7 @@ export default function Footer() {
               }}
             >
               <a
-                href="mailto:hello@quantara.com"
+                href="mailto:quantaralabssl@gmail.com"
                 id="footer-email"
                 style={{
                   display: "inline-flex",
@@ -262,10 +248,10 @@ export default function Footer() {
                 className="footer-nav-link"
               >
                 <Mail size={15} aria-hidden="true" />
-                hello@quantara.com
+                quantaralabssl@gmail.com
               </a>
               <a
-                href="tel:+15551234567"
+                href="tel:+94742198574"
                 id="footer-phone"
                 style={{
                   display: "inline-flex",
@@ -279,7 +265,7 @@ export default function Footer() {
                 className="footer-nav-link"
               >
                 <Phone size={15} aria-hidden="true" />
-                +1 (555) 123-4567
+                +94 742198574
               </a>
               <span
                 style={{
@@ -319,23 +305,11 @@ export default function Footer() {
               }}
               className="footer-social-chip"
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  width: "1.25rem",
-                  height: "1.25rem",
-                  borderRadius: "0.25rem",
-                  background: "var(--gradient-primary)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#fff",
-                  fontWeight: 700,
-                  fontSize: "0.7rem",
-                }}
-              >
-                QS
-              </span>
+              <img
+                src="/android-chrome-192x192.png"
+                alt="Quantara Social Logo"
+                style={{ width: "1.25rem", height: "1.25rem", borderRadius: "0.25rem", flexShrink: 0 }}
+              />
               Quantara Social ↗
             </a>
           </div>

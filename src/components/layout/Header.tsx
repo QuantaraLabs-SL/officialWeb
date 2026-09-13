@@ -317,28 +317,12 @@ export default function Header() {
               flexShrink: 0,
             }}
           >
-            {/* Gradient icon mark */}
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-flex",
-                width: "2rem",
-                height: "2rem",
-                borderRadius: "0.5rem",
-                background: "var(--gradient-primary)",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: "1rem",
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
-                flexShrink: 0,
-              }}
-            >
-              Q
-            </span>
+            {/* Image icon mark */}
+            <img
+              src="/android-chrome-192x192.png"
+              alt="Quantara Logo"
+              style={{ width: "2rem", height: "2rem", borderRadius: "0.5rem", flexShrink: 0 }}
+            />
             <span
               style={{
                 fontFamily: "var(--font-display)",
