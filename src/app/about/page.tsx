@@ -109,7 +109,7 @@ export default function AboutPage() {
             {/* Founder 1 */}
             <div className="bg-white rounded-2xl border-l-4 border-t border-r border-b border-[var(--color-line)] shadow-sm" style={{ borderLeftColor: "var(--color-teal)", padding: "2rem" }}>
               <div className="w-20 h-20 rounded-full mb-6 overflow-hidden relative" style={{ background: "var(--color-mist)" }}>
-                <Image src="/images/duranka.jpg" alt="Duranka Thilakarathna" fill className="object-cover" />
+                <Image src="/images/Duranka.jpeg" alt="Duranka Thilakarathna" fill className="object-cover" />
               </div>
               <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
                 Duranka Thilakarathna

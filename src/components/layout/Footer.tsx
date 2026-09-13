@@ -277,7 +277,7 @@ export default function Footer() {
                 }}
               >
                 <MapPin size={15} aria-hidden="true" style={{ marginTop: "0.15rem", flexShrink: 0 }} />
-                San Francisco, CA, USA
+                Malabe, Sri Lanka
               </span>
             </address>
 

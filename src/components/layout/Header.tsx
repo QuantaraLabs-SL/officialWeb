@@ -332,7 +332,7 @@ export default function Header() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Quantara
+              Quantara Labs
             </span>
           </Link>
 
