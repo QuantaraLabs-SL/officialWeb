@@ -10,12 +10,12 @@ const CONNECT_D  = 0.52;         // world-units, connection threshold
 const WRAP_X     = 2.6;
 const WRAP_Y     = 1.8;
 
-// Colors tuned for dark navy hero background
-const NODE_COLOR   = 0x7ab4ff;   // soft cornflower blue
-const LINE_COLOR   = 0x4a90d9;   // slightly darker blue for lines
+// Colors tuned for light ambient hero background
+const NODE_COLOR   = 0x00A3E0;   // vibrant cyan
+const LINE_COLOR   = 0x00B894;   // teal line connections
 const NODE_OPACITY = 0.65;
-const LINE_OPACITY = 0.22;
-const NODE_SIZE    = 0.022;
+const LINE_OPACITY = 0.28;
+const NODE_SIZE    = 0.026;
 
 export default function HeroCanvas() {
   const mountRef = useRef<HTMLDivElement>(null);

@@ -148,7 +148,7 @@ export default function JourneySection() {
       className="relative overflow-hidden border-t border-[var(--color-line)]"
       style={{
         background: "linear-gradient(135deg, rgba(27,75,143,0.04) 0%, rgba(18,167,131,0.04) 100%), var(--color-paper)",
-        padding: "6rem 1.5rem",
+        padding: "6rem 0",
       }}
     >
       {/* Network Particles Background */}
@@ -162,7 +162,7 @@ export default function JourneySection() {
         <AbstractNetworkCanvas />
       </div>
 
-      <div className="page-wrapper max-w-6xl mx-auto relative z-10">
+      <div className="page-wrapper max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24" style={{ marginTop: "4rem", marginBottom: "8rem" }}>
           <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 2.5rem)", color: "var(--color-ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
             Our Journey

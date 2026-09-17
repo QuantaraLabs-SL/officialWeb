@@ -49,20 +49,40 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      await emailjs.send(
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        business: formData.business,
+        otherDetails: formData.otherDetails?.trim() || "N/A",
+        challenge: formData.challenge,
+        method: formData.method,
+        whatsappNumber: formData.whatsappNumber || "N/A",
+      };
+
+      // 1. Send inquiry to Quantara internal team
+      const adminPromise = emailjs.send(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          business: formData.business,
-          otherDetails: formData.otherDetails?.trim() || "N/A",
-          challenge: formData.challenge,
-          method: formData.method,
-          whatsappNumber: formData.whatsappNumber || "N/A",
-        },
+        templateParams,
         emailjsConfig.publicKey
       );
+
+      // 2. If autoreply template ID is configured, send confirmation to the client
+      const autoReplyPromise = emailjsConfig.autoReplyTemplateId
+        ? emailjs
+            .send(
+              emailjsConfig.serviceId,
+              emailjsConfig.autoReplyTemplateId,
+              templateParams,
+              emailjsConfig.publicKey
+            )
+            .catch((err) => {
+              // Log error but don't fail the primary submission if only the autoreply fails
+              console.warn("Autoreply failed to deliver:", err);
+            })
+        : Promise.resolve();
+
+      await Promise.all([adminPromise, autoReplyPromise]);
 
       setSubmitted(true);
       setFormData({
