@@ -17,7 +17,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "figma:test": "node scripts/test-figma.cjs",
+    "figma:mcp": "node scripts/run-figma-mcp.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

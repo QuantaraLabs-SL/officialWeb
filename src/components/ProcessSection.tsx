@@ -128,10 +128,10 @@ export default function ProcessSection() {
       className="overflow-hidden border-t border-[var(--color-line)]"
       style={{ 
         background: "var(--color-blue-light)", 
-        padding: "6rem 1.5rem" 
+        padding: "6rem 0" 
       }}
     >
-      <div className="page-wrapper max-w-6xl mx-auto">
+      <div className="page-wrapper max-w-7xl mx-auto">
         <div className="text-center mb-20" style={{ marginTop: "4rem", marginBottom: "8rem" }}>
           <p
             className="uppercase"

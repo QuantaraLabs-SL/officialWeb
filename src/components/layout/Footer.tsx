@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 
@@ -23,6 +25,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -329,7 +332,7 @@ export default function Footer() {
           <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)" }}>
             © {year} Quantara. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
+          <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
             {[
               { label: "Privacy Policy", href: "/privacy" },
               { label: "Terms of Service", href: "/terms" },
@@ -348,6 +351,26 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("quantara-open-cookie-preferences"));
+                }
+              }}
+              style={{
+                fontSize: "0.85rem",
+                color: "rgba(255,255,255,0.4)",
+                background: "transparent",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                transition: "color 0.15s ease",
+              }}
+              className="footer-nav-link"
+            >
+              Cookie Preferences
+            </button>
           </div>
         </div>
       </div>
